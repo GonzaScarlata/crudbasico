@@ -5,16 +5,37 @@ const AgregarProducto = () => {
 const [nombreProducto, setNombreProducto] = useState('');
 const [precioProducto, setPrecioProducto] = useState(0);
 const [categoria, setCategoria] = useState('');
+const [error, setError] = useState(false);
 
 const cambiarCategoria = (e) => {
     setCategoria(e.target.value)
+}
+
+const handleSubmit = (e) => {
+    e.preventDefault();
+
+    //validar datos
+    if (nombreProducto.trim() === '' || precioProducto <= 0 || precioProducto > 5000 || categoria === '') {
+        // muestro cartel de error
+        setError(true);
+    } else {
+        // si todo está bien mando a la api
+        setError(false);
+        // crear el objeto enviado
+        const producto = {
+            nombreProducto,
+            precioProducto,
+            categoria
+        }
+        console.log(producto);
+    }
 }
 
 
     return (
         <div className="container w-75 my-4 ">
             <h1 className="text-center">Agregar nuevo producto</h1>
-            <Form>
+            <Form  onSubmit={(e)=> handleSubmit(e)}>
                 <div className="">
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Nombre del producto*</Form.Label>
@@ -46,7 +67,7 @@ const cambiarCategoria = (e) => {
                             name="categoria"
                             label={`Bebida caliente`}
                             value='bebidaCaliente'
-                            onChange={cambiarCategoria()}
+                            onChange={(e)=> cambiarCategoria(e)}
                             className="m-2"
                         />
                         <Form.Check
@@ -54,7 +75,7 @@ const cambiarCategoria = (e) => {
                             name="categoria"
                             label={`Bebida fría`}
                             value='bebidaFria'
-                            onChange={cambiarCategoria()}
+                            onChange={(e)=> cambiarCategoria(e)}
                             className="m-2"
                         />
                         <Form.Check
@@ -62,7 +83,7 @@ const cambiarCategoria = (e) => {
                             name="categoria"
                             label={`Sandwich`}
                             value='sandwich'
-                            onChange={cambiarCategoria()}
+                            onChange={(e)=> cambiarCategoria(e)}
                             className="m-2"
                         />
                         <Form.Check
@@ -70,7 +91,7 @@ const cambiarCategoria = (e) => {
                             name="categoria"
                             label={`Dulce`}
                             value='dulce'
-                            onChange={cambiarCategoria()}
+                            onChange={(e)=> cambiarCategoria(e)}
                             className="m-2"
                         />
                         <Form.Check
@@ -78,7 +99,7 @@ const cambiarCategoria = (e) => {
                             name="categoria"
                             label={`Salado`}
                             value='salado'
-                            onChange={cambiarCategoria()}
+                            onChange={(e)=> cambiarCategoria(e)}
                             className="m-2"
                         />
                     </div>
@@ -86,9 +107,12 @@ const cambiarCategoria = (e) => {
                 <Button variant="danger" className="w-100 mb-4" type="submit">
                     Agregar Producto
                 </Button>
-                <Alert variant='warning'>
-                    Todos los campos son obligatorios!
-                </Alert>
+                {
+                    (error === true) ? (
+                        <Alert variant='warning'>Todos los campos son obligatorios!</Alert>
+                    ) : (null)
+                }
+                
             </Form>
         </div>
     );
