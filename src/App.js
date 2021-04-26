@@ -11,7 +11,30 @@ import Navegacion from './components/common/Navegacion';
 import Footer from './components/common/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import EditarProducto from './components/productos/EditarProducto';
+import {useState, useEffect} from 'react';
+
 function App() {
+
+  const [productos, setProductos] = useState([]);
+
+  useEffect(() => {
+    consultarAPI();
+  }, []);
+
+  const consultarAPI = async() =>{
+    try{
+      const respuesta = await fetch('http://localhost:3004/cafeteria');
+      console.log(respuesta);
+      if (respuesta.status === 200) {
+        const listaProductos = await respuesta.json();
+        console.log(listaProductos);
+        setProductos(listaProductos);
+      }
+    } catch(error){
+
+    }
+  }
+
   return (
     <Router>
       <Navegacion />
@@ -20,7 +43,7 @@ function App() {
           <Inicio />
         </Route>
         <Route exact path="/productos">
-          <ListaDeProductos />
+          <ListaDeProductos productos = {productos} />
         </Route>
         <Route exact path="/productos/nuevo">
           <AgregarProducto />
