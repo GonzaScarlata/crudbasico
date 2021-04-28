@@ -3,6 +3,8 @@ import { Alert, Button, Form } from "react-bootstrap";
 import Swal from 'sweetalert2';
 
 const AgregarProducto = (props) => {
+    const URL = process.env.REACT_APP_API_URL;
+
     const [nombreProducto, setNombreProducto] = useState("");
     const [precioProducto, setPrecioProducto] = useState(0);
     const [categoria, setCategoria] = useState("");
@@ -33,7 +35,7 @@ const AgregarProducto = (props) => {
                 precioProducto,
                 categoria,
             };
-            console.log(producto);
+            //console.log(producto);
 
 
             try {
@@ -46,8 +48,8 @@ const AgregarProducto = (props) => {
                     body: JSON.stringify(producto)
                 };
 
-                const respuesta = await fetch("http://localhost:3004/cafeteria", datosAEnviar);
-                console.log(respuesta);
+                const respuesta = await fetch(URL, datosAEnviar);
+                //console.log(respuesta);
 
                 if(respuesta.status ===201){
                     // mostrar un cartel al usuario, se agregó al producto
@@ -100,7 +102,7 @@ const AgregarProducto = (props) => {
                         />
                     </Form.Group>
                 </div>
-                <Form.Group controlId="">
+                <Form.Group >
                     <h3 className="text-center">Categoría</h3>
                     <div
                         key={`default-radio`}

@@ -7,12 +7,6 @@
       "id": 1
     },
     {
-      "nombreProducto": "medialuna",
-      "precioProducto": 40,
-      "categoria": "dulce",
-      "id": 2
-    },
-    {
       "nombreProducto": "Pan x kg",
       "precioProducto": 120,
       "categoria": "salado",
@@ -37,10 +31,10 @@
       "id": 6
     },
     {
-      "nombreProducto": "Producto Prueba merge",
-      "precioProducto": 34,
-      "categoria": "bebidaCaliente",
-      "id": 7
+      "nombreProducto": "café helado",
+      "precioProducto": 60,
+      "categoria": "bebidaFria",
+      "id": 9
     }
   ]
 }
