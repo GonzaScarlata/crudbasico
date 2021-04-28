@@ -35,6 +35,12 @@
       "precioProducto": 100,
       "categoria": "bebidaFria",
       "id": 6
+    },
+    {
+      "nombreProducto": "Producto Prueba merge",
+      "precioProducto": 34,
+      "categoria": "bebidaCaliente",
+      "id": 7
     }
   ]
 }

@@ -100,7 +100,7 @@ const AgregarProducto = (props) => {
                         />
                     </Form.Group>
                 </div>
-                <Form.Group controlId="formBasicCheckbox">
+                <Form.Group controlId="">
                     <h3 className="text-center">Categoría</h3>
                     <div
                         key={`default-radio`}
