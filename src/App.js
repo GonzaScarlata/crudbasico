@@ -46,7 +46,7 @@ function App() {
           <ListaDeProductos productos = {productos} />
         </Route>
         <Route exact path="/productos/nuevo">
-          <AgregarProducto />
+          <AgregarProducto consultarAPI={consultarAPI} />
         </Route>
         <Route exact path="/productos/editar">
           <EditarProducto />

@@ -27,7 +27,7 @@ const EditarProducto = () => {
                         placeholder="Nuevo precio del Producto"
                     />
                 </Form.Group>
-                <Form.Group controlId="formBasicCheckbox">
+                <Form.Group controlId="">
                     <h3 className="text-center">Categoría</h3>
                     <div
                         key={`default-radio`}

@@ -23,6 +23,18 @@
       "precioProducto": 15,
       "categoria": "salado",
       "id": 4
+    },
+    {
+      "nombreProducto": "Brownie",
+      "precioProducto": 140,
+      "categoria": "dulce",
+      "id": 5
+    },
+    {
+      "nombreProducto": "Jugo de frutas",
+      "precioProducto": 100,
+      "categoria": "bebidaFria",
+      "id": 6
     }
   ]
 }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Alert, Button, Form } from "react-bootstrap";
 import Swal from 'sweetalert2';
 
-const AgregarProducto = () => {
+const AgregarProducto = (props) => {
     const [nombreProducto, setNombreProducto] = useState("");
     const [precioProducto, setPrecioProducto] = useState(0);
     const [categoria, setCategoria] = useState("");
@@ -35,6 +35,7 @@ const AgregarProducto = () => {
             };
             console.log(producto);
 
+
             try {
                 // aquí escribo normalmente el código, lo que quiero que pase
                 const datosAEnviar = {
@@ -58,7 +59,7 @@ const AgregarProducto = () => {
                         timer: 1500
                       })
                     // otras tareas
-
+                    props.consultarAPI();
                 }
             } catch (error) {
                 console.log(error);
