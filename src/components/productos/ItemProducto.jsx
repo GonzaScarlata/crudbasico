@@ -2,7 +2,8 @@ import React from "react";
 import { Button, ListGroup } from "react-bootstrap";
 import Swal from 'sweetalert2';
 import {Link} from 'react-router-dom';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPencilAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 const ItemProducto = (props) => {
 
@@ -55,13 +56,13 @@ const ItemProducto = (props) => {
             </p>
             <div>
                 <Link to={'/productos/editar/' + props.producto.id} className="mr-3 btn btn-warning text-light">
-                    Editar
+                    <FontAwesomeIcon icon={faPencilAlt}></FontAwesomeIcon>
                 </Link>
                 <Button
                     variant="danger"
                     onClick={() => eliminarProducto(props.producto.id)}
                 >
-                    Eliminar
+                    <FontAwesomeIcon icon={faTrashAlt}></FontAwesomeIcon>
                 </Button>
             </div>
         </ListGroup.Item>

@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { useParams, withRouter } from "react-router-dom";
 import { rangoPrecio, campoRequerido } from "../common/helpers";
+import Swal from 'sweetalert2';
 
-const EditarProducto = () => {
+const EditarProducto = (props) => {
     const [categoria, setCategoria] = useState("");
     const [error, setError] = useState(false);
     const codProducto = useParams().id;
@@ -15,26 +16,28 @@ const EditarProducto = () => {
     const nombreProductoRef = useRef("");
     const precioProductoRef = useRef(0);
 
-    useEffect(async () => {
-        try {
-            const respuesta = await fetch(URL);
-            if (respuesta.status === 200) {
-                const productoSolicitado = await respuesta.json();
-                setProducto(productoSolicitado);
-            }
-        } catch (error) {
-            console.log(
-                "🚀 ~ file: EditarProducto.jsx ~ line 16 ~ useEffect ~ error",
-                error
-            );
-        }
-    }, []);
+    useEffect(
+            async () => {
+                try {
+                    const respuesta = await fetch(URL);
+                    if (respuesta.status === 200) {
+                        const productoSolicitado = await respuesta.json();
+                        setProducto(productoSolicitado);
+                    }
+                } catch (error) {
+                    console.log(
+                        "🚀 ~ file: EditarProducto.jsx ~ line 16 ~ useEffect ~ error",
+                        error
+                    );
+                }
+        }, []
+    );
 
     const cambiarCategoria = (e) => {
         setCategoria(e.target.value);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         let categoriaModificada =
@@ -47,6 +50,34 @@ const EditarProducto = () => {
             campoRequerido(categoriaModificada)
         ) {
             setError(false);
+            try {
+                const productoModificado = {
+                    nombreProducto: nombreProductoRef.current.value,
+                    precioProducto: precioProductoRef.current.value,
+                    categoría: categoriaModificada
+                };
+
+                const respuesta = await fetch(URL, {
+                    method: 'PUT',
+                    headers: {"Content-Type":"application/json"},
+                    body: JSON.stringify(productoModificado)
+                });
+                console.log(respuesta);
+                if(respuesta.status === 200) {
+                    Swal.fire(
+                        'Producto modificado',
+                        'Se actualizaron los datos del producto',
+                        'success'
+                    )
+                    //consultar API
+                    props.consultarAPI();
+                    //redireccionar
+                    props.history.push('/productos');
+                };
+
+            } catch (error) {
+                console.log(error);
+            }
         } else {
             setError(true);
         }
@@ -54,7 +85,7 @@ const EditarProducto = () => {
     return (
         <div className="container w-75 my-4">
             <h1 className="text-center">Edición de productos</h1>
-            <Form>
+            <Form onSubmit={(e)=>handleSubmit(e)}>
                 <Form.Group>
                     <Form.Label>Nombre Producto</Form.Label>
                     <Form.Control
@@ -149,4 +180,4 @@ const EditarProducto = () => {
     );
 };
 
-export default EditarProducto;
+export default withRouter(EditarProducto);

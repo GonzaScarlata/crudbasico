@@ -2,32 +2,26 @@
   "cafeteria": [
     {
       "nombreProducto": "café con leche",
-      "precioProducto": 50,
-      "categoria": "bebidaCaliente",
+      "precioProducto": "50",
+      "categoría": "salado",
       "id": 1
     },
     {
-      "nombreProducto": "Pan x kg",
-      "precioProducto": 120,
-      "categoria": "salado",
-      "id": 3
-    },
-    {
       "nombreProducto": "Tortillas",
-      "precioProducto": 15,
-      "categoria": "salado",
+      "precioProducto": "30",
+      "categoría": "salado",
       "id": 4
     },
     {
       "nombreProducto": "Brownie",
-      "precioProducto": 140,
-      "categoria": "dulce",
+      "precioProducto": "200",
+      "categoría": "bebidaFria",
       "id": 5
     },
     {
       "nombreProducto": "Jugo de frutas",
-      "precioProducto": 100,
-      "categoria": "bebidaFria",
+      "precioProducto": "110",
+      "categoría": "bebidaFria",
       "id": 6
     },
     {
